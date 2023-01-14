@@ -48,3 +48,27 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
+function addLeadingZero(value) {
+    return value.toString().padStart(2, '0');
+  }
+  
+  btnStart.addEventListener('click', () => {
+    let timer = setInterval(() => {
+      let countdown = new Date(text.value) - new Date();
+      btnStart.disabled = true;
+      if (countdown >= 0) {
+        let timeObject = convertMs(countdown);
+        days.textContent = addLeadingZero(timeObject.days);
+        hours.textContent = addLeadingZero(timeObject.hours);
+        minutes.textContent = addLeadingZero(timeObject.minutes);
+        seconds.textContent = addLeadingZero(timeObject.seconds);
+        if (countdown <= 10000) {
+          timerHtml.style.color = 'tomato';
+        }
+      } else {
+        Notiflix.Notify.success('Countdown finished');
+        timerHtml.style.color = 'black';
+        clearInterval(timer);
+      }
+    }, 1000);
+  });
