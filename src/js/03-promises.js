@@ -18,3 +18,4 @@ function createPromise(position, delay) {
   return promise;
 }
 
+btnCreatePromise.addEventListener('click', e => {});
